@@ -1,13 +1,21 @@
+import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 
-export const load: PageServerLoad = async ({ params }) => {
-  return {
-    movie: {
-      id: params.id,
-      title: 'Test Title',
-      description: 'Test Description',
-    },
-    title: 'Test Title',
-    description: 'Test Description',
-  };
+export const load: PageServerLoad = async ({ fetch, params }) => {
+  const response = await fetch(`/api/movie/${params.id}`);
+
+  if (response.ok) {
+    const movie = await response.json();
+
+    return {
+      movie,
+      meta: {
+        title: movie.movieDetails.title,
+        description: movie.movieDetails.overview,
+      },
+    };
+  }
+
+  const errorJSON = await response.json();
+  throw error(response.status, errorJSON.message);
 };

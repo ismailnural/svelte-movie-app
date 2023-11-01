@@ -5,3 +5,8 @@ export { default as MovieCard } from './MovieCard.svelte';
 export { default as CircularChart } from './CircularChart.svelte';
 export { default as Poster } from './Poster.svelte';
 export { default as GhostLoader } from './GhostLoader.svelte';
+export { default as SearchBar } from './SearchBar.svelte';
+export { default as BackdropPoster } from './BackdropPoster.svelte';
+export { default as MovieOverview } from './MovieOverview.svelte';
+export { default as MovieVideos } from './MovieVideos.svelte';
+export { default as SimilarMovies } from './SimilarMovies.svelte';

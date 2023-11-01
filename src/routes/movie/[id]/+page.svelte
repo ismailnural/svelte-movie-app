@@ -1,10 +1,14 @@
 <script lang="ts">
   import type { PageData } from './$types';
+  import { MovieOverview, MovieVideos, SimilarMovies } from '$components';
 
   export let data: PageData;
 
-  $: movie = data.movie;
+  $: movieDetails = data.movie.movieDetails;
+  $: movieVideos = data.movie.movieVideos;
+  $: similarMovies = data.movie.similarMovies;
 </script>
 
-<h1>{movie?.title} - {movie?.id}</h1>
-<p>{movie?.description}</p>
+<MovieOverview resource={movieDetails} />
+<MovieVideos resource={movieVideos} />
+<SimilarMovies resource={similarMovies} />

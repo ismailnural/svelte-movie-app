@@ -17,8 +17,8 @@
 </script>
 
 <svelte:head>
-  <title>sMovie Popular Movies{$page.data.title ? ` - ${$page.data.title}` : ''}</title>
-  <meta name="description" content={$page.data.description || 'sMovie Popular Movies'} />
+  <title>{[$page?.data?.meta?.title, 'sMovie'].filter((item) => item !== undefined && item !== '').join(' | ')}</title>
+  <meta name="description" content={$page?.data?.meta?.description || 'sMovie Popular Movies'} />
 </svelte:head>
 
 <main class="flex flex-col flex-1 min-h-full">

@@ -9,10 +9,24 @@ export const load: PageServerLoad = async ({ fetch, depends, url }) => {
   depends('app:moviesServerLoad');
 
   if (response.ok) {
+    const currentPage = page ? parseInt(page) : 1;
+
+    const getTitle = () => {
+      const pageTitle = currentPage > 1 ? ` / ${currentPage}` : '';
+      if (query) {
+        return `Search Results for "${query}"${pageTitle}`;
+      }
+      return `Popular Movies${pageTitle}`;
+    };
+
     return {
       movies: response.json(),
-      page: page ? parseInt(page) : 1,
+      page: currentPage,
       query,
+      meta: {
+        title: getTitle(),
+        description: 'sMovie Popular Movies',
+      },
     };
   }
 
