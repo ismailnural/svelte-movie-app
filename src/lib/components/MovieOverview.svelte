@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { MovieResponseType } from '$lib/types';
+  import type { MovieResponseType } from '$lib';
   import { BackdropPoster, Poster } from '$components';
   import { getYear, getDate, convertMinsToHrsMins } from '$utils';
 

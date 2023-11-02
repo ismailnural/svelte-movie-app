@@ -2,6 +2,7 @@
   import '../app.css';
 
   import type { LayoutData } from './$types';
+  import { APIUrls } from '$lib';
 
   import { page } from '$app/stores';
   import { invalidateAll } from '$app/navigation';
@@ -9,7 +10,7 @@
   export let data: LayoutData;
 
   const logoutHandler = async () => {
-    const response = await fetch('/api/logout', { method: 'POST' });
+    const response = await fetch(APIUrls.client.logout, { method: 'POST' });
     if (response.ok) {
       invalidateAll();
     }

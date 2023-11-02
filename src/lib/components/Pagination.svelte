@@ -6,25 +6,30 @@
   export let currentPage: number;
   export let totalPages: number;
 
+  $: url = new URL($page.url.href);
+
+  const updatePage = () => {
+    if (currentPage < 2) {
+      url.searchParams.delete('page');
+    } else {
+      url.searchParams.set('page', JSON.stringify(currentPage));
+    }
+    goto(url.href, { replaceState: true, keepFocus: true });
+  };
+
   const prevPage = () => {
     if (currentPage > 1) {
       currentPage -= 1;
+      updatePage();
     }
   };
+
   const nextPage = () => {
     if (currentPage < totalPages && currentPage !== 500) {
       currentPage += 1;
+      updatePage();
     }
   };
-
-  afterUpdate(() => {
-    const url = new URL($page.url.href);
-
-    if (url.searchParams.get('page') || currentPage > 1) {
-      url.searchParams.set('page', JSON.stringify(currentPage));
-      goto(url.href, { replaceState: true });
-    }
-  });
 </script>
 
 <div class="flex items-center space-x-2 fill-gray-500 pt-8 pb-2 m-auto">

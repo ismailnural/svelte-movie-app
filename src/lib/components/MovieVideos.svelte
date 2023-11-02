@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { MovieVideosResultsType } from '$lib/types';
+  import type { MovieVideosResultsType } from '$lib';
   import { PageTitle } from '$components';
 
   export let resource: MovieVideosResultsType[];

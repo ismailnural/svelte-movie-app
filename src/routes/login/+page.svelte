@@ -1,7 +1,7 @@
 <script lang="ts">
   import { invalidateAll } from '$app/navigation';
   import type { Snapshot } from './$types';
-
+  import { APIUrls } from '$lib';
   import { InputField } from '$components';
 
   let username = '';
@@ -21,7 +21,7 @@
   };
 
   const login = async () => {
-    const response = await fetch('/api/login', {
+    const response = await fetch(APIUrls.client.login, {
       method: 'POST',
       body: JSON.stringify({ username, password }),
     });

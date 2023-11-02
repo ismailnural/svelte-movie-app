@@ -17,7 +17,7 @@
   };
 </script>
 
-<SearchBar q={query} />
+<SearchBar {query} />
 <div class="flex items-center justify-center px-3 sm:px-5 pt-3 pb-10">
   <div class="flex flex-col max-w-screen-xl">
     <PageTitle title={pageTitle()} />

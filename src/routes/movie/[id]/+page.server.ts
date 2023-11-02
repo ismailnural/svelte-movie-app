@@ -1,8 +1,9 @@
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
+import { APIUrls } from '$lib';
 
 export const load: PageServerLoad = async ({ fetch, params }) => {
-  const response = await fetch(`/api/movie/${params.id}`);
+  const response = await fetch(APIUrls.client.movie(params.id));
 
   if (response.ok) {
     const movie = await response.json();

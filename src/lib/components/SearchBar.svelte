@@ -1,23 +1,20 @@
 <script lang="ts">
-  import { afterUpdate } from 'svelte';
   import { goto } from '$app/navigation';
   import { page } from '$app/stores';
 
-  export let q: string;
+  export let query: string;
 
-  afterUpdate(() => {
-    const url = new URL($page.url.href);
+  $: url = new URL($page.url.href);
 
-    if (q === undefined || q === '') {
+  const updateQuery = () => {
+    if (query) {
+      url.searchParams.set('query', query);
+      url.searchParams.delete('page');
+    } else {
       url.searchParams.delete('query');
     }
-
-    if (url.searchParams.get('query') || q !== undefined) {
-      url.searchParams.set('query', q);
-      url.searchParams.delete('page');
-      goto(url.href, { replaceState: true, keepFocus: true });
-    }
-  });
+    goto(url.href, { replaceState: true, keepFocus: true, noScroll: true });
+  };
 </script>
 
 <div class="px-3 sm:px-5 py-9 bg-white">
@@ -37,7 +34,8 @@
         type="text"
         placeholder="Search ..."
         name="query"
-        bind:value={q}
+        bind:value={query}
+        on:input={updateQuery}
         class="text-sm ring-1 bg-transparent ring-gray-200 focus:ring-red-300 pl-12 pr-8 py-3 text-gray-600 rounded-full w-full outline-none focus:ring-1"
       />
     </div>

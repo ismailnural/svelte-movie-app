@@ -1,10 +1,3 @@
-export type PagedResponse<T> = {
-  results: T[];
-  page: number;
-  total_pages: number;
-  total_results: number;
-};
-
 export type MovieResponseType = {
   backdrop_path: string;
   genres: {
@@ -45,13 +38,6 @@ export type MovieResponseType = {
   vote_count: number;
 };
 
-export type MoviesResponseType = PagedResponse<MovieResponseType>;
-
-export type MoviesResquestType = {
-  page?: string;
-  query?: string;
-};
-
 export type MovieVideosResultsType = {
   iso_639_1: string;
   iso_3166_1: string;
@@ -63,9 +49,4 @@ export type MovieVideosResultsType = {
   official: boolean;
   published_at: string;
   id: string;
-};
-
-export type MovieVideosResponseType = {
-  id: number;
-  results: MovieVideosResultsType[];
 };
